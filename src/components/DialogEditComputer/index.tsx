@@ -110,7 +110,7 @@ export default function DialogEditComputer({
           Editar
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto font-montserrat">
         <DialogHeader>
           <DialogTitle>Editar Computador</DialogTitle>
           <DialogDescription>Edite o computador.</DialogDescription>

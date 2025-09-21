@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { LogOut, Home, Menu, X } from "lucide-react";
+import { LogOut, Menu, X, ComputerIcon } from "lucide-react";
 import Link from "next/link";
 import { AuthMe, LogoutAdminService } from "@/services/Auth";
 import { toast } from "sonner";
@@ -16,18 +16,13 @@ export default function AdminLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const [userName, setUserName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
-  const [loading, setLoading] = useState(true);
 
   const fetchDashboard = async () => {
     try {
       const res = await AuthMe();
-      setUserName(res.firstName);
-      setUserLastName(res.lastName);
+      setUserName(res.username);
     } catch (error) {
-      toast.error("Erro ao buscar dados do dashboard");
-    } finally {
-      setLoading(false);
+      toast.error("Erro ao buscar dados do usuário");
     }
   };
 
@@ -36,11 +31,11 @@ export default function AdminLayout({
   }, []);
 
   const navigation = [
-    { name: "Computadores", href: "/admin/computers", icon: Home },
+    { name: "Computadores", href: "/admin/computers", icon: ComputerIcon },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen font-montserrat bg-gray-50">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
@@ -57,7 +52,7 @@ export default function AdminLayout({
       >
         <div className="flex items-center justify-between h-16 px-6 border-b">
           <Link href="/">
-            <p>Gerenciamento LW</p>
+            <p className="font-montserrat">Gerenciamento LW</p>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -75,7 +70,7 @@ export default function AdminLayout({
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center px-6 py-3 text-sm font-medium transition-colors ${
+                className={`flex items-center px-6 py-3 text-sm font-montserrat transition-colors ${
                   isActive
                     ? "bg-olive-50 text-olive-700 border-r-2 border-olive-600"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
@@ -115,18 +110,15 @@ export default function AdminLayout({
           <div className="flex items-center space-x-4">
             <Link
               href="/"
-              className="text-sm text-gray-600 hover:text-olive-600"
+              className="text-sm text-gray-600 font-montserrat hover:text-olive-600"
             >
               Ver Site
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center font-montserrat space-x-4">
             <p>
-              Seja bem-vindo,{" "}
-              <strong>
-                {userName} {userLastName}
-              </strong>
+              Seja bem-vindo, <strong>{userName}</strong>
             </p>
           </div>
         </div>

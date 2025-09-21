@@ -67,8 +67,12 @@ export default function AdminProdutos() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Computadores</h1>
-          <p className="text-gray-600">Gerencie seus computadores</p>
+          <h1 className="text-3xl font-bold font-montserrat text-gray-900">
+            Computadores
+          </h1>
+          <p className="text-gray-600 font-josefin">
+            Gerencie seus computadores
+          </p>
         </div>
 
         <DialogCreateComputer onCreated={fetchComputers} />
@@ -87,7 +91,7 @@ export default function AdminProdutos() {
             className="pl-10"
           />
         </div>
-        <div className="text-sm text-gray-600">
+        <div className="text-sm font-montserrat text-gray-600">
           {loading
             ? "Carregando..."
             : `${filteredComputers.length} de ${total} computadores`}
@@ -96,13 +100,15 @@ export default function AdminProdutos() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Lista de Computadores</CardTitle>
-          <CardDescription>
+          <CardTitle className="font-montserrat">
+            Lista de Computadores
+          </CardTitle>
+          <CardDescription className="font-josefin">
             Gerencie todos os computadores da sua lista
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto font-montserrat">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -166,7 +172,7 @@ export default function AdminProdutos() {
             </Table>
           </div>
 
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-2 font-montserrat mt-4">
             <Button
               variant="outline"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
