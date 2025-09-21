@@ -1,22 +1,10 @@
 "use client";
 
-import type React from "react";
-
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  LogOut,
-  Home,
-  Package,
-  ShoppingCart,
-  Menu,
-  X,
-  Mail,
-} from "lucide-react";
+import { LogOut, Home, Menu, X } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import logo from "../../../assets/logo.png";
 import { AuthMe, LogoutAdminService } from "@/services/Auth";
 import { toast } from "sonner";
 
@@ -69,7 +57,7 @@ export default function AdminLayout({
       >
         <div className="flex items-center justify-between h-16 px-6 border-b">
           <Link href="/">
-            <Image src={logo} alt="logo" width={150} />
+            <p>Gerenciamento LW</p>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}

@@ -49,5 +49,5 @@ export async function LogoutAdminService() {
     path: "/",
   });
 
-  window.location.href = "/login";
+  window.location.href = "/";
 }

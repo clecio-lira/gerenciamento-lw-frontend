@@ -14,14 +14,14 @@ export function middleware(request: NextRequest) {
 
   // se tentar acessar a página de login e já tiver um token válido,
   // redireciona direto para o dashboard
-  if (request.nextUrl.pathname === "/login" && token) {
+  if (request.nextUrl.pathname === "/" && token) {
     return NextResponse.redirect(new URL("/admin/dashboard", request.url));
   }
 
   // se a rota for protegida e não houver token,
   // redireciona o usuário para a página de login
   if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   // se nenhuma das condições acima for atendida,

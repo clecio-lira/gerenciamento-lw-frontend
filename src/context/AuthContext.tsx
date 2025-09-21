@@ -27,7 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await LoginAdminService({ email, password });
       setIsAuthenticated(true);
-      router.push("/admin/dashboard");
+      router.push("/admin/computers");
     } catch (error: any) {
       throw error;
     }
