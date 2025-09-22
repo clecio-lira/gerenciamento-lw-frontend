@@ -78,8 +78,7 @@ export default function DialogCreateComputer({
       <DialogTrigger asChild>
         <Button
           onClick={resetForm}
-          className="bg-green-700 hover:bg-green-800 text-white font-semibold font-montserrat px-6 py-3 text-lg shadow-lg cursor-pointer"
-          size="lg"
+          className="bg-green-700 hover:bg-green-800 text-white font-semibold font-montserrat px-6 py-3 shadow-lg cursor-pointer"
         >
           <Plus className="w-5 h-5 mr-2" />
           Adicionar Computador

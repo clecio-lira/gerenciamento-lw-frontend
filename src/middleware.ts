@@ -13,9 +13,9 @@ export function middleware(request: NextRequest) {
   );
 
   // se tentar acessar a página de login e já tiver um token válido,
-  // redireciona direto para o dashboard
+  // redireciona direto para o dos computadores
   if (request.nextUrl.pathname === "/" && token) {
-    return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    return NextResponse.redirect(new URL("/admin/computers", request.url));
   }
 
   // se a rota for protegida e não houver token,

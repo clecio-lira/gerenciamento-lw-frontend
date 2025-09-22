@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Search } from "lucide-react";
+import { Search, Eye } from "lucide-react";
 import { FindAllComputers } from "@/services/Computer";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -27,23 +27,30 @@ import { IComputer } from "@/models/Computer";
 import DialogCreateComputer from "@/components/DialogCreateComputer";
 import DialogDeleteComputer from "@/components/DialogDeleteComputer";
 import DialogEditComputer from "@/components/DialogEditComputer";
+import { ComputerDetailDialog } from "@/components/ComputerDetailDialog";
 
-export default function AdminProdutos() {
+export default function Computers() {
   const [computers, setComputers] = useState<IComputer[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
 
   // paginação
   const [page, setPage] = useState(1);
-  const [limit] = useState(10); // tamanho fixo da página
+  const [limit] = useState(10);
   const [total, setTotal] = useState(0);
+
+  // controle do modal de detalhes
+  const [selectedComputer, setSelectedComputer] = useState<IComputer | null>(
+    null
+  );
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
 
   const fetchComputers = async () => {
     try {
       const res = await FindAllComputers(
         page,
         limit,
-        "createdAt,desc",
+        "updatedAt,desc",
         searchTerm
       );
       setComputers(res.data);
@@ -65,7 +72,7 @@ export default function AdminProdutos() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold font-montserrat text-gray-900">
             Computadores
@@ -121,8 +128,7 @@ export default function AdminProdutos() {
               </TableHeader>
               <TableBody>
                 {loading
-                  ? // 🔹 Skeleton Rows
-                    [...Array(5)].map((_, i) => (
+                  ? [...Array(5)].map((_, i) => (
                       <TableRow key={i}>
                         <TableCell>
                           <Skeleton className="h-4 w-20" />
@@ -132,9 +138,6 @@ export default function AdminProdutos() {
                         </TableCell>
                         <TableCell>
                           <Skeleton className="h-4 w-16" />
-                        </TableCell>
-                        <TableCell>
-                          <Skeleton className="h-4 w-20" />
                         </TableCell>
                         <TableCell>
                           <Skeleton className="h-4 w-20" />
@@ -156,15 +159,28 @@ export default function AdminProdutos() {
                           {new Date(computer.updatedAt).toLocaleString("pt-BR")}
                         </TableCell>
                         <TableCell className="text-right">
-                          <DialogEditComputer
-                            id={computer.id}
-                            onCreated={fetchComputers}
-                          />
-                          <DialogDeleteComputer
-                            id={computer.id}
-                            name={computer.name}
-                            setComputers={setComputers}
-                          />
+                          <div className="flex justify-end gap-2">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              onClick={() => {
+                                setSelectedComputer(computer);
+                                setIsDetailOpen(true);
+                              }}
+                              className="cursor-pointer"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </Button>
+                            <DialogEditComputer
+                              id={computer.id}
+                              onCreated={fetchComputers}
+                            />
+                            <DialogDeleteComputer
+                              id={computer.id}
+                              name={computer.name}
+                              setComputers={setComputers}
+                            />
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -199,6 +215,12 @@ export default function AdminProdutos() {
           </div>
         </CardContent>
       </Card>
+
+      <ComputerDetailDialog
+        computer={selectedComputer}
+        isOpen={isDetailOpen}
+        onOpenChange={setIsDetailOpen}
+      />
     </div>
   );
 }

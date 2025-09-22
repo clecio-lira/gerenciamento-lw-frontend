@@ -25,7 +25,7 @@ export async function CreateComputer(data: IComputerStore) {
 export async function FindAllComputers(
   page?: number,
   limit?: number,
-  sort: string = "createdAt,desc",
+  sort?: string,
   search?: string
 ) {
   const token = Cookies.get("nextauth.token");

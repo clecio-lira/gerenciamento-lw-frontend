@@ -17,7 +17,7 @@ export default function AdminLayout({
   const pathname = usePathname();
   const [userName, setUserName] = useState("");
 
-  const fetchDashboard = async () => {
+  const fetchUserName = async () => {
     try {
       const res = await AuthMe();
       setUserName(res.username);
@@ -27,7 +27,7 @@ export default function AdminLayout({
   };
 
   useEffect(() => {
-    fetchDashboard();
+    fetchUserName();
   }, []);
 
   const navigation = [
@@ -107,18 +107,12 @@ export default function AdminLayout({
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/"
-              className="text-sm text-gray-600 font-montserrat hover:text-olive-600"
-            >
-              Ver Site
-            </Link>
-          </div>
-
           <div className="flex items-center font-montserrat space-x-4">
             <p>
-              Seja bem-vindo, <strong>{userName}</strong>
+              Seja bem-vindo,{" "}
+              <p>
+                <strong>{userName}</strong>
+              </p>
             </p>
           </div>
         </div>
