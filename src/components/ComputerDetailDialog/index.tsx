@@ -83,8 +83,8 @@ function Section({
 function Info({ label, value }: { label: string; value?: string | null }) {
   return (
     <div className="flex flex-col">
-      <span className="text-xs text-gray-500">{label}</span>
-      <span className="font-medium text-gray-800">{value || "-"}</span>
+      <span className="text-xs text-gray-500">{label}GB</span>
+      <span className="font-medium text-gray-800">{value || "-"}GB</span>
     </div>
   );
 }
