@@ -107,7 +107,7 @@ export default function AdminLayout({
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center font-montserrat space-x-4">
+          <div className="flex items-center justify-end font-montserrat space-x-4">
             <p>
               Seja bem-vindo,{" "}
               <p>

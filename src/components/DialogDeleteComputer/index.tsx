@@ -47,7 +47,7 @@ export default function DialogDeleteComputer({
       </AlertDialogTrigger>
       <AlertDialogContent className="font-montserrat">
         <AlertDialogHeader>
-          <AlertDialogTitle>Excluir Produto</AlertDialogTitle>
+          <AlertDialogTitle>Excluir Computador</AlertDialogTitle>
           <AlertDialogDescription>
             Tem certeza de que deseja excluir o computador{" "}
             <strong>{name}</strong>?
