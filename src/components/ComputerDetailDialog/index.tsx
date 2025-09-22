@@ -50,10 +50,13 @@ export function ComputerDetailDialog({
               <div className="grid grid-cols-2 gap-4">
                 <Info label="Segundo Nome" value={computer.secondname} />
                 <Info label="Processador" value={computer.processor} />
-                <Info label="Memória RAM" value={computer.ram.toString()} />
+                <Info
+                  label="Memória RAM"
+                  value={computer.ram.toString() + "GB"}
+                />
                 <Info
                   label="Armazenamento"
-                  value={computer.storage.toString()}
+                  value={computer.storage.toString() + "GB"}
                 />
               </div>
             </Section>
@@ -84,7 +87,7 @@ function Info({ label, value }: { label: string; value?: string | null }) {
   return (
     <div className="flex flex-col">
       <span className="text-xs text-gray-500">{label}</span>
-      <span className="font-medium text-gray-800">{value || "-"}GB</span>
+      <span className="font-medium text-gray-800">{value || "-"}</span>
     </div>
   );
 }
