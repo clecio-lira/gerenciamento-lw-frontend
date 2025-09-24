@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { LogOut, Menu, X, ComputerIcon } from "lucide-react";
+import { LogOut, Menu, X, ComputerIcon, BrushCleaningIcon } from "lucide-react";
 import Link from "next/link";
 import { AuthMe, LogoutAdminService } from "@/services/Auth";
 import { toast } from "sonner";
@@ -32,6 +32,7 @@ export default function AdminLayout({
 
   const navigation = [
     { name: "Computadores", href: "/admin/computers", icon: ComputerIcon },
+    { name: "Limpezas", href: "/admin/cleaning", icon: BrushCleaningIcon },
   ];
 
   return (
