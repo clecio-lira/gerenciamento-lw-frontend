@@ -56,7 +56,7 @@ export default function Computers() {
       setComputers(res.data);
       setTotal(res.total);
     } catch (error) {
-      toast.error("Erro ao buscar produtos");
+      toast.error("Erro ao buscar os computadores");
     } finally {
       setLoading(false);
     }

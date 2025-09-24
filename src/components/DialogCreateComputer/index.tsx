@@ -198,7 +198,7 @@ export default function DialogCreateComputer({
               type="submit"
               className="cursor-pointer bg-green-700 hover:bg-green-800 text-white"
             >
-              Criar Produto
+              Criar Computador
             </Button>
           </div>
         </form>

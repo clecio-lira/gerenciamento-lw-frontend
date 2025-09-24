@@ -16,13 +16,9 @@ import { Textarea } from "../ui/textarea";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { IComputerStore } from "@/models/Computer";
-import {
-  CreateComputer,
-  FindOneComputer,
-  UpdateComputer,
-} from "@/services/Computer";
+import { FindOneComputer, UpdateComputer } from "@/services/Computer";
 
-interface DialogEditProductProps {
+interface DialogEditComputerProps {
   id: number;
   onCreated: () => void;
 }
@@ -30,7 +26,7 @@ interface DialogEditProductProps {
 export default function DialogEditComputer({
   id,
   onCreated,
-}: DialogEditProductProps) {
+}: DialogEditComputerProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [formData, setFormData] = useState<IComputerStore>({
     name: "",
@@ -56,7 +52,7 @@ export default function DialogEditComputer({
 
   useEffect(() => {
     if (!isDialogOpen) return;
-    const fetchProduct = async () => {
+    const fetchComputer = async () => {
       try {
         const res = await FindOneComputer(id);
         setFormData({
@@ -72,7 +68,7 @@ export default function DialogEditComputer({
         toast.error("Erro ao buscar o computador");
       }
     };
-    fetchProduct();
+    fetchComputer();
   }, [id, isDialogOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
